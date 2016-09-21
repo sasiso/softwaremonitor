@@ -1,10 +1,10 @@
 import sys
-
+import math
 from OpenGL.GL import *
 from PySide import QtCore, QtGui, QtOpenGL
 
 
-class StartControl(object):
+class Bubble(object):
     def __init__(self, x, y, w):
         self._x = x
         self._y = y
@@ -12,19 +12,14 @@ class StartControl(object):
         pass
 
     def render(self):
-        x1 = self._x
-        x2 = self._x
-        x3 = self._x + self._w / 2
-        y1 = self._y + self._w / 2
-        y2 = self._y - self._w / 2
-        y3 = self._y
-
-        glBegin(GL_TRIANGLES)
+        num_triangles = 20
+        twice_the_pi = 3.14159 * 2
+        glBegin(GL_TRIANGLE_FAN)
         glColor3f(0, 1, 0)
-
-        glVertex3f(x1, y1, 0)
-        glVertex3f(x2, y2, 0)
-        glVertex3f(x3, y3, 0)
+        glVertex2f(self._x, self._y)
+        for i in range(num_triangles+1):
+            glVertex2f(self._x + (self._w * math.cos(i * twice_the_pi / num_triangles)),
+                       self._y + (self._w * math.sin(i * twice_the_pi / num_triangles)))
         glEnd()
 
 
@@ -35,14 +30,14 @@ class LocalWidget(QtOpenGL.QGLWidget):
         super(LocalWidget, self).__init__(parent)
         self.width = 0
         self.height = 0
-        self._startControl = StartControl(- 3.0, 1.0, 1.0)
+        self._bubble = Bubble(- 3.0, 1.0, 1.0)
 
         timer = QtCore.QTimer(self)
         timer.timeout.connect(self.render)
         timer.start(20)
 
     def render(self):
-        self._startControl.render()
+        self._bubble.render()
 
     def __del__(self):
         print "GLWidget.__del__"
@@ -57,7 +52,7 @@ class LocalWidget(QtOpenGL.QGLWidget):
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glPushMatrix()
-        self._startControl.render()
+        self._bubble.render()
         glPopMatrix()
 
     def resizeGL(self, width, height):
@@ -100,7 +95,7 @@ class DisplayEngine(QtGui.QMainWindow):
         central_layout.addWidget(self.glWidgetArea, 0, 0, 4, 4)
         central_widget.setLayout(central_layout)
         self.setWindowTitle("Visual Log Monitor")
-        self.resize(800, 600)
+        self.resize(600, 600)
 
 
 if __name__ == '__main__':
