@@ -30,9 +30,18 @@ class ALine:
         self._controls[pos] = control
 
     def draw_line(self):
-        glBegin(GL_QUADS)
-        glVertex3f(self.x1, self.y1 - self.width, 0.0)
-        glVertex3f(self.x2, self.y2 - self.width, 0.0)
-        glVertex3f(self.x2, self.y2 + self.width, 0.0)
-        glVertex3f(self.x1, self.y1 + self.width, 0.0)
+        glBegin(GL_LINES)
+        glColor3f(0, 1, 0)
+        glVertex2f(self.x1, self.y1)
+        glVertex2f(self.x2, self.y2)
         glEnd()
+
+
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    line = ALine(-7.9, 1, 7.9, 1, .03)
+    import testbed
+
+    mainWin = testbed.MainWindow(line)
+    mainWin.show()
+    sys.exit(app.exec_())
