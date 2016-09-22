@@ -19,6 +19,7 @@ class Triangle:
 
     def render(self):
         glBegin(GL_TRIANGLES)
+        self.centerX +=1.0
         x1 = self.centerX
         x2 = self.centerX - self.width / 2
         x3 = self.centerX + self.width / 2

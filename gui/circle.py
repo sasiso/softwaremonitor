@@ -32,7 +32,7 @@ class Circle:
         self._controls[pos] = control
 
     def draw_circle(self):
-        self._num_triangles -= 1
+        self._num_triangles -= 10
         if self._num_triangles == 0:
             self._num_triangles = 100
 

@@ -14,8 +14,8 @@ class LocalWidget(QtOpenGL.QGLWidget):
         # self._bubble = Bubble(- 3.0, 1.0, 1.0)
         self._controls = controls
         timer = QtCore.QTimer(self)
-        timer.timeout.connect(self.render)
-        timer.start(20)
+        timer.timeout.connect(self.updateGL)
+        timer.start(40)
 
     def render(self):
         for a in self._controls:
@@ -28,11 +28,12 @@ class LocalWidget(QtOpenGL.QGLWidget):
     def initializeGL(self):
         print "GLWidget.initializeGL"
 
-        glEnable(GL_BLEND)
+        # glEnable(GL_BLEND)
         glClearColor(0.0, 0.0, 0.0, 1.0)
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glClearColor(0, 0.0, 0.0, 0.0)
         glPushMatrix()
         self.render()
         glPopMatrix()

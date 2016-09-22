@@ -12,6 +12,9 @@ class StartControl(object):
         pass
 
     def render(self):
+        self._x += 0.01
+        if self._x == 5:
+            self._x = -3.0
         x1 = self._x
         x2 = self._x
         x3 = self._x + self._w / 2
@@ -38,7 +41,7 @@ class LocalWidget(QtOpenGL.QGLWidget):
         self._startControl = StartControl(- 3.0, 1.0, 1.0)
 
         timer = QtCore.QTimer(self)
-        timer.timeout.connect(self.render)
+        timer.timeout.connect(self.updateGL)
         timer.start(20)
 
     def render(self):
@@ -59,6 +62,7 @@ class LocalWidget(QtOpenGL.QGLWidget):
         glPushMatrix()
         self._startControl.render()
         glPopMatrix()
+
 
     def resizeGL(self, width, height):
         print "GLWidget.resizeGL"
