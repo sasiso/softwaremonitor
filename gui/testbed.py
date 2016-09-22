@@ -7,18 +7,19 @@ from PySide import QtCore, QtGui, QtOpenGL
 class LocalWidget(QtOpenGL.QGLWidget):
     zRotationChanged = QtCore.Signal(int)
 
-    def __init__(self, control, parent=None):
+    def __init__(self, controls, parent=None):
         super(LocalWidget, self).__init__(parent)
         self.width = 0
         self.height = 0
         # self._bubble = Bubble(- 3.0, 1.0, 1.0)
-        self._control = control
+        self._controls = controls
         timer = QtCore.QTimer(self)
         timer.timeout.connect(self.render)
         timer.start(20)
 
     def render(self):
-        self._control.render()
+        for a in self._controls:
+            a.render()
 
     def __del__(self):
         print "GLWidget.__del__"
@@ -57,12 +58,12 @@ class LocalWidget(QtOpenGL.QGLWidget):
 
 
 class MainWindow(QtGui.QMainWindow):
-    def __init__(self, control):
+    def __init__(self, controls):
         print "DisplayEngine.__init__"
         super(MainWindow, self).__init__()
         central_widget = QtGui.QWidget()
         self.setCentralWidget(central_widget)
-        self.glWidget = LocalWidget(control)
+        self.glWidget = LocalWidget(controls)
 
         self.glWidgetArea = QtGui.QScrollArea()
         self.glWidgetArea.setWidget(self.glWidget)

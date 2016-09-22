@@ -38,10 +38,39 @@ class ALine:
 
 
 if __name__ == '__main__':
+    list = []
+
     app = QtGui.QApplication(sys.argv)
-    line = ALine(-7.9, 1, 7.9, 1, .03)
+    lineA = ALine(-7.9, 1, 7.9, 1, .03)
+    lineB = ALine(-7.9, 2, 7.9, 2, .03)
+    lineC = ALine(-7.9, 3, 7.9, 3, .03)
+    lineD = ALine(-7.9, 4, 7.9, 4, .03)
+    lineE = ALine(-7.9, 5, 7.9, 5, .03)
+    lineF = ALine(-7.9, 6, 7.9, 6, .03)
+    list.append(lineA)
+    list.append(lineB)
+    list.append(lineC)
+    list.append(lineD)
+    list.append(lineE)
+    list.append(lineF)
+
+
+    import bubble
+    import start
+
+    for i in range(10):
+        t = start.StartControl(-7.9 + i + 0.5, 1, 0.2)
+        lineA.add(i, t)
+
+    import bubble
+    import start
+
+    for i in range(10):
+        b = bubble.Bubble(-7.9 + i, 2, 0.1)
+        lineB.add(i, b)
+
     import testbed
 
-    mainWin = testbed.MainWindow(line)
+    mainWin = testbed.MainWindow(list)
     mainWin.show()
     sys.exit(app.exec_())
