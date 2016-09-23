@@ -6,6 +6,7 @@ from displayengine import displayengine
 if __name__ == '__main__':
 
     app = QtGui.QApplication(sys.argv)
-    mainWin = displayengine.DisplayEngine()
+    list = []
+    mainWin = displayengine.DisplayEngine(list)
     mainWin.show()
     sys.exit(app.exec_())
