@@ -1,4 +1,12 @@
 # software monitor
+Displays statics of software on time scale.
+Different channels can be added into display.
+
+Current target is to add logging as input channel.
+Display will render all events happening in process on time scale
+For Example - User Actions, Success Failures, Crashes, Warnings
+            - Ideally events are just regular expression and assigned ( user can configure which UI element to display)
+            - See mock-up folder.
 
 Possible User Interactions
 - Open the location for input (i.e. logs folder)
@@ -11,6 +19,7 @@ Possible User Interactions
 - Scroll to move left and right on time scale
 - Annotate findings
 - Configure alarm for specific occurrence
+- Allow user to open file on click ( if source is log file)
 
 
 
