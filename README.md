@@ -1,3 +1,12 @@
+Developer Setup
+- Install Python from Welcome to Python.org
+- Install PyCharm Community Edition from www.jetbrains.com/PyCharm
+- Once Python is installed
+    Install PySide ( for QT)
+    Install PyOpenGl ( for OpenGL)
+- Now open PyCharm, Create a project with Root Directory of Source code
+- Configure Python interpreter, You are ready to go....
+
 # software monitor
 Displays statics of software on time scale.
 Different channels can be added into display.
