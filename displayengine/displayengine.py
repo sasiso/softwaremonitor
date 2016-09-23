@@ -19,26 +19,19 @@ except ImportError:
     sys.exit(1)
 
 
-class Control:
-    def render(self):
-        pass
-
-
 class GLWidget(QtOpenGL.QGLWidget):
     zRotationChanged = QtCore.Signal(int)
 
-    def __init__(self, parent=None):
+    def __init__(self, controls, parent=None):
         super(GLWidget, self).__init__(parent)
-        self.width = 0
-        self.height = 0
-        self.line_a = ALine(-7.9, 1, 7.9, 1, .03)
-        self.triangle = Triangle( - 3.0, 1.0, 1.0)
+        self._controls = controls
         timer = QtCore.QTimer(self)
-        timer.timeout.connect(self.render)
+        timer.timeout.connect(self.updateGL)
         timer.start(20)
 
     def render(self):
-        self.line_a.render()
+        for a in self._controls:
+            a.render()
 
     def __del__(self):
         print "GLWidget.__del__"
@@ -49,22 +42,13 @@ class GLWidget(QtOpenGL.QGLWidget):
         pass
 
     def initializeGL(self):
-        print "GLWidget.initializeGL"
-        light_pos = (5.0, 5.0, 10.0, 1.0)
-        glLightfv(GL_LIGHT0, GL_POSITION, light_pos)
-        glEnable(GL_LIGHTING)
-        glEnable(GL_LIGHT0)
-        glEnable(GL_DEPTH_TEST)
-
-        glEnable(GL_NORMALIZE)
         glClearColor(0.0, 0.0, 0.0, 1.0)
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glClearColor(0, 0.0, 0.0, 0.0)
         glPushMatrix()
-        self.line_a.render()
-        self.triangle.render()
-
+        self.render()
         glPopMatrix()
 
     def resizeGL(self, width, height):
@@ -88,14 +72,14 @@ class GLWidget(QtOpenGL.QGLWidget):
 
 
 class DisplayEngine(QtGui.QMainWindow):
-    def __init__(self):
+    def __init__(self, controls):
         print "DisplayEngine.__init__"
         super(DisplayEngine, self).__init__()
 
         centralWidget = QtGui.QWidget()
         self.setCentralWidget(centralWidget)
 
-        self.glWidget = GLWidget()
+        self.glWidget = GLWidget(controls)
         self.pixmapLabel = QtGui.QLabel()
 
         self.glWidgetArea = QtGui.QScrollArea()
