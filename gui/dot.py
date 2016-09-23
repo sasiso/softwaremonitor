@@ -1,5 +1,5 @@
 import sys
-import math
+import control
 from PySide import QtGui
 
 try:
@@ -11,7 +11,7 @@ except ImportError:
     sys.exit(1)
 
 
-class Dot:
+class Dot(object, control.Control):
     def __init__(self, x1, y1, w):
         print "ALine.__init__"
         self._x = x1
@@ -19,7 +19,7 @@ class Dot:
         self._w = w
         self._controls = {}
 
-    def render(self):
+    def render(self, bounds):
         self.draw_dot()
         for key, value in self._controls.items():
             value.render()

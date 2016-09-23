@@ -1,4 +1,5 @@
 import sys
+import control
 
 from PySide import QtGui
 
@@ -11,7 +12,7 @@ except ImportError:
     sys.exit(1)
 
 
-class ALine:
+class ALine(object, control.Control):
     def __init__(self, x1, y1, x2, y2, width):
         print "ALine.__init__"
         self.x1 = x1
@@ -21,7 +22,7 @@ class ALine:
         self.width = width
         self._controls = {}
 
-    def render(self):
+    def render(self, bounds):
         self.draw_line()
         for key, value in self._controls.items():
             value.render()

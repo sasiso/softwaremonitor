@@ -2,16 +2,17 @@ import sys
 
 from OpenGL.GL import *
 from PySide import QtCore, QtGui, QtOpenGL
+import control
 
 
-class StartControl(object):
+class StartControl(object, control.Control):
     def __init__(self, x, y, w):
         self._x = x
         self._y = y
         self._w = w
         pass
 
-    def render(self):
+    def render(self, bounds):
         x1 = self._x
         x2 = self._x
         x3 = self._x + self._w / 2

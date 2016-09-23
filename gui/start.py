@@ -1,17 +1,20 @@
 import sys
+import control
 
 from OpenGL.GL import *
 from PySide import QtCore, QtGui, QtOpenGL
+import control
 
 
-class StartControl(object):
+class StartControl(control.Control):
     def __init__(self, x, y, w):
+        super(control.Control, self).__init__()
         self._x = x
         self._y = y
         self._w = w
         pass
 
-    def render(self):
+    def render(self, bounds):
         self._x += 0.01
         if self._x == 5:
             self._x = -3.0
@@ -39,6 +42,7 @@ class LocalWidget(QtOpenGL.QGLWidget):
         self.width = 0
         self.height = 0
         self._startControl = StartControl(- 3.0, 1.0, 1.0)
+        self._bounds = control.Bounds()
 
         timer = QtCore.QTimer(self)
         timer.timeout.connect(self.updateGL)
@@ -60,9 +64,8 @@ class LocalWidget(QtOpenGL.QGLWidget):
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         glPushMatrix()
-        self._startControl.render()
+        self._startControl.render(self._bounds)
         glPopMatrix()
-
 
     def resizeGL(self, width, height):
         print "GLWidget.resizeGL"

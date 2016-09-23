@@ -1,6 +1,7 @@
 import sys
 
 from PySide import QtGui
+import control
 
 try:
     from OpenGL.GL import *
@@ -11,15 +12,15 @@ except ImportError:
     sys.exit(1)
 
 
-class Triangle:
+class Triangle(object, control.Control):
     def __init__(self, center_x, center_y, width):
         self.centerX = center_x
         self.centerY = center_y
         self.width = width
 
-    def render(self):
+    def render(self, bounds):
         glBegin(GL_TRIANGLES)
-        self.centerX +=1.0
+        self.centerX += 1.0
         x1 = self.centerX
         x2 = self.centerX - self.width / 2
         x3 = self.centerX + self.width / 2

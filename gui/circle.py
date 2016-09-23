@@ -2,6 +2,8 @@ import sys
 import math
 from PySide import QtGui
 import dot
+import control
+
 
 try:
     from OpenGL.GL import *
@@ -12,7 +14,7 @@ except ImportError:
     sys.exit(1)
 
 
-class Circle:
+class Circle(object, control.Control):
     def __init__(self, x1, y1, w):
         print "ALine.__init__"
         self._x = x1
@@ -22,7 +24,7 @@ class Circle:
         self._dot = dot.Dot(self._x, self._y, 0)
         self._num_triangles = 100
 
-    def render(self):
+    def render(self, bounds):
         self.draw_circle()
         self._dot.render()
         for key, value in self._controls.items():

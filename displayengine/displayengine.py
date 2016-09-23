@@ -1,13 +1,6 @@
 #!/usr/bin/env python
 
 import sys
-from gui.line import ALine
-from gui.triangle import Triangle
-import math
-import math, random
-from PySide.QtCore import *
-from PySide.QtGui import *
-from PySide.QtOpenGL import *
 from PySide import QtCore, QtGui, QtOpenGL
 
 try:
