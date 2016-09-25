@@ -32,11 +32,10 @@ See Current Work
 Run Line.py
 Run main.py
 
-Engine Work
+Next Work
 ----------------------------------------------------------------------------
-
-Next Development Task
-Implement simple logging parser
+- Add open source License
+Implement sample logging parser
   To read time and information and render them on display engine
 
 Implement source manager to handle different sources
@@ -46,6 +45,7 @@ Implement source manager to handle different sources
 
 UI Work
 ---------------------------------------------------------------------------
+Add more controls
 
 Challenge
 ---------------------------------------------------------------------------
