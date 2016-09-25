@@ -7,8 +7,8 @@ class StartControl(control.Control):
         super(control.Control, self).__init__()
 
     def render(self):
-        #self.bounds.left_top.x += 0.05
-        #self.bounds.right_bottom.x += 0.5
+        self.bounds.left_top.x += 0.05
+        self.bounds.right_bottom.x += 0.05
 
         x1 = self.bounds.left_top.x
         x2 = self.bounds.left_top.x
@@ -24,3 +24,4 @@ class StartControl(control.Control):
         glVertex3f(x2, y2, 0)
         glVertex3f(x3, y3, 0)
         glEnd()
+        return True

@@ -12,3 +12,4 @@ class User(control.Control):
         glBegin(GL_TRIANGLES)
         glColor3f(0, 1, 0)
         glEnd()
+        return True

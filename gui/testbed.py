@@ -1,21 +1,21 @@
-import sys
-import math
-from OpenGL.GL import *
 from PySide import QtCore, QtGui, QtOpenGL
+
+from OpenGL.GL import *
 
 
 class LocalWidget(QtOpenGL.QGLWidget):
     zRotationChanged = QtCore.Signal(int)
 
-    def __init__(self, controls, parent=None):
+    def __init__(self, controls, parent=None, singleShot=False):
         super(LocalWidget, self).__init__(parent)
         self.width = 0
         self.height = 0
         # self._bubble = Bubble(- 3.0, 1.0, 1.0)
         self._controls = controls
         timer = QtCore.QTimer(self)
-        timer.timeout.connect(self.updateGL)
-        timer.start(40)
+        if not singleShot:
+            timer.timeout.connect(self.updateGL)
+            timer.start(40)
 
     def render(self):
         for a in self._controls:
@@ -59,12 +59,17 @@ class LocalWidget(QtOpenGL.QGLWidget):
 
 
 class MainWindow(QtGui.QMainWindow):
-    def __init__(self, controls):
+    def __init__(self, controls, singlehot=False):
+        """
+
+        :param controls:
+        :param singlehot: Set this to true if you just want to render once
+        """
         print "DisplayEngine.__init__"
         super(MainWindow, self).__init__()
         central_widget = QtGui.QWidget()
         self.setCentralWidget(central_widget)
-        self.glWidget = LocalWidget(controls)
+        self.glWidget = LocalWidget(controls, None, singlehot)
 
         self.glWidgetArea = QtGui.QScrollArea()
         self.glWidgetArea.setWidget(self.glWidget)
@@ -79,3 +84,4 @@ class MainWindow(QtGui.QMainWindow):
         central_widget.setLayout(central_layout)
         self.setWindowTitle("Visual Log Monitor")
         self.resize(600, 600)
+
