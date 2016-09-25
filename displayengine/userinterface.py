@@ -18,9 +18,11 @@ class GLWidget(QtOpenGL.QGLWidget):
     def __init__(self, controls, parent=None):
         super(GLWidget, self).__init__(parent)
         self._controls = controls
-        timer = QtCore.QTimer(self)
-        timer.timeout.connect(self.updateGL)
-        timer.start(20)
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.updateGL)
+
+    def start(self, refresh_rate):
+        self.timer.start(refresh_rate)
 
     def render(self):
         for a in self._controls:
@@ -67,6 +69,7 @@ class GLWidget(QtOpenGL.QGLWidget):
 class UserInterface(QtGui.QMainWindow):
     def __init__(self, controls):
         super(UserInterface, self).__init__()
+        self.refrsh_rate = 40
 
         centralWidget = QtGui.QWidget()
         self.setCentralWidget(centralWidget)
@@ -126,3 +129,6 @@ class UserInterface(QtGui.QMainWindow):
         slider.valueChanged.connect(setterSlot)
         changedSignal.connect(slider.setValue)
         return slider
+
+    def start(self):
+        self.glWidget.start(self.refrsh_rate)

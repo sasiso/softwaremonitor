@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="e6dda562-1fce-4a03-ad40-4b1adfbb8590" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/displayengine/sourcemgr.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/displayengine/userinterface.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gui/enumallcontrols.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/anevent.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/channel.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/loggingsourcesample.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/input/source.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/displayengine/displayengine.py" afterPath="$PROJECT_DIR$/displayengine/displayengine.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/displayengine/userinterface.py" afterPath="$PROJECT_DIR$/displayengine/userinterface.py" />
     </list>
     <ignored path="visuallogmonitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,11 +28,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="displayengine.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="line.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gui/line.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="displayengine.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/displayengine/displayengine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="257">
+              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
               <folding>
                 <element signature="e#9#19#0" expanded="true" />
               </folding>
@@ -51,8 +55,8 @@
       <file leaf-file-name="userinterface.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/displayengine/userinterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="66" column="19" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="19" />
+            <state relative-caret-position="225">
+              <caret line="132" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,11 +75,21 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="19" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="18">
+              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,16 +114,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enumallcontrols.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gui/enumallcontrols.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="loggingsourcesample.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input/loggingsourcesample.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -125,16 +129,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="72">
               <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="balloon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gui/balloon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -176,11 +170,12 @@
         <option value="$PROJECT_DIR$/input/source.py" />
         <option value="$PROJECT_DIR$/input/loggingsourcesample.py" />
         <option value="$PROJECT_DIR$/displayengine/sourcemgr.py" />
-        <option value="$PROJECT_DIR$/displayengine/userinterface.py" />
         <option value="$PROJECT_DIR$/input/anevent.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/displayengine/displayengine.py" />
+        <option value="$PROJECT_DIR$/displayengine/userinterface.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -273,6 +268,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="gui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="displayengine" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -291,7 +300,7 @@
       <recent name="C:\data\Engineering\visuallogmonitor" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in __init__">
+  <component name="RunManager" selected="Python.line">
     <configuration default="false" name="Unittests in __init__" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -533,11 +542,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in __init__" />
+        <item index="0" class="java.lang.String" itemvalue="Python.line" />
         <item index="1" class="java.lang.String" itemvalue="Python.main" />
-        <item index="2" class="java.lang.String" itemvalue="Python.displayengine" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestStringMethods.test_all_control" />
-        <item index="4" class="java.lang.String" itemvalue="Python.line" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in __init__" />
+        <item index="3" class="java.lang.String" itemvalue="Python.displayengine" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestStringMethods.test_all_control" />
       </list>
     </recent_temporary>
   </component>
@@ -616,7 +625,14 @@
       <option name="project" value="LOCAL" />
       <updated>1474785243303</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added &#10;&#10;Source manager&#10;Event &#10;channels&#10;Sample logging source">
+      <created>1474790207121</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1474790207121</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -653,14 +669,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="24" width="1315" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23193917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20836502" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2503726" sideWeight="0.33307984" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35916543" sideWeight="0.33307984" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05961252" sideWeight="0.51939166" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2503726" sideWeight="0.6669201" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35916543" sideWeight="0.6669201" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -694,7 +710,9 @@
     <MESSAGE value="Line rendering correctly at this stage" />
     <MESSAGE value="adding a base control with dot in middle" />
     <MESSAGE value="Enhanced unit test." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhanced unit test." />
+    <MESSAGE value="Added &#10;&#10;Source manager&#10;Event &#10;channels&#10;Sample logging source" />
+    <MESSAGE value="Updated readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated readme" />
     <option name="CHANGE_BROWSER_SETTINGS">
       <map>
         <entry key="svn">
@@ -722,16 +740,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/displayengine/displayengine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#9#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/OpenGL/raw/GL/VERSION/GL_1_0.py" />
     <entry file="file://C:/Python27/Lib/site-packages/OpenGL/platform/baseplatform.py" />
     <entry file="file://$PROJECT_DIR$/displayengine/__init__.py">
@@ -931,16 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gui/line.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="78" column="37" selection-start-line="78" selection-start-column="37" selection-end-line="78" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -989,14 +987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/displayengine/userinterface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="66" column="19" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/input/loggingsourcesample.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -1013,16 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/displayengine/sourcemgr.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
@@ -1031,13 +1011,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/displayengine/userinterface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="132" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gui/line.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="66" column="27" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/displayengine/displayengine.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="257">
+          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
           <folding>
             <element signature="e#9#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
