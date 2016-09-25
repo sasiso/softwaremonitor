@@ -1,39 +1,38 @@
-import sys
 import math
-from PySide import QtGui
-import dot
+from OpenGL.GL import *
 import control
+import dot
+import sys
+from PySide import QtGui
 
 
-try:
-    from OpenGL.GL import *
-except ImportError:
-    app = QtGui.QApplication(sys.argv)
-    QtGui.QMessageBox.critical(None, "OpenGL grabber",
-                               "PyOpenGL must be installed to run this example.")
-    sys.exit(1)
-
-
-class Circle(object, control.Control):
-    def __init__(self, x1, y1, w):
-        print "ALine.__init__"
-        self._x = x1
-        self._y = y1
-        self._w = w
+class Circle(control.Control):
+    def __init__(self):
+        super(control.Control, self).__init__()
         self._controls = {}
-        self._dot = dot.Dot(self._x, self._y, 0)
+        self._dot = dot.Dot()
         self._num_triangles = 100
 
-    def render(self, bounds):
-        self.draw_circle()
+    def render(self):
+        self.bounds.left_top.x += 0.01
+        self.bounds.right_bottom.x += 0.01
+        center = self.bounds.center()
+        radius = self.bounds.width()/2
+
+        self.draw_circle(center.x, center.y, radius)
+        self._dot.set_bounds(control.Bounds(center, center))
         self._dot.render()
+
         for key, value in self._controls.items():
             value.render()
+        return True
 
-    def add(self, pos, control):
-        self._controls[pos] = control
+    def add(self, pos, c):
+        self._controls[pos] = c
 
-    def draw_circle(self):
+    def draw_circle(self, x, y, w):
+        print "draw_circle x=%d y=%d w=%d" % (x, y, w)
+
         self._num_triangles -= 10
         if self._num_triangles == 0:
             self._num_triangles = 100
@@ -42,16 +41,17 @@ class Circle(object, control.Control):
         glBegin(GL_LINES)
         glColor3f(0, 1, 0)
         for i in range(self._num_triangles + 1):
-            glVertex2f(self._x + (self._w * math.cos(i * twice_the_pi / self._num_triangles)),
-                       self._y + (self._w * math.sin(i * twice_the_pi / self._num_triangles)))
+            glVertex2f(x + (w * math.cos(i * twice_the_pi / self._num_triangles)),
+                       y + (w * math.sin(i * twice_the_pi / self._num_triangles)))
         glEnd()
-
 
 if __name__ == '__main__':
     list = []
 
     app = QtGui.QApplication(sys.argv)
-    circle = Circle(-1.9, 1, 1)
+    bound = control.Bounds(control.Point(-7.0, 1.0), control.Point(-5.0, 3.0))
+    circle = Circle()
+    circle.set_bounds(bound)
 
     list.append(circle)
 
@@ -60,3 +60,4 @@ if __name__ == '__main__':
     mainWin = testbed.MainWindow(list)
     mainWin.show()
     sys.exit(app.exec_())
+

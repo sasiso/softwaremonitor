@@ -11,24 +11,25 @@ except ImportError:
     sys.exit(1)
 
 
-class Dot(object, control.Control):
-    def __init__(self, x1, y1, w):
+class Dot(control.Control):
+    def __init__(self):
+        super(control.Control, self).__init__()
         print "ALine.__init__"
-        self._x = x1
-        self._y = y1
-        self._w = w
         self._controls = {}
 
-    def render(self, bounds):
+    def render(self):
         self.draw_dot()
         for key, value in self._controls.items():
             value.render()
+        return True
 
     def draw_dot(self):
         glPointSize(2.0)
         glBegin(GL_POINTS)
         glColor3f(0.0, 0.0, 1.0)
-        glVertex3f(self._x, self._y, 0.0)
+
+        print "Circle is %d, %d" % (self.bounds.left_top.x, self.bounds.left_top.y)
+        glVertex3f(self.bounds.left_top.x, self.bounds.left_top.y, 0.0)
         glEnd()
 
     def add(self, pos, control):
