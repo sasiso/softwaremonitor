@@ -1,1 +1,8 @@
-date_regex= '^(\d\d-\d\d-\d\d\d\d\s\d{1,2}:\s\d{1,20}:\d{1,2}.\d\d\d\d)'
+"""
+
+Format: 21-12-2014 21:22:59.0000 Process(12).
+        DD-MM-YYYY HH:MM:SS.mmmm Process(thradid) Message
+
+"""
+
+meta_regex='^(\d\d{1,2}-\d\d{1,2}-\d\d{1,4}\s\d\d{1,2}:\d\d{1,2}:\d\d{1,2}.\d{1,6}\s[\w]+\(\d+\)'
