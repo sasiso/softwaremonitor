@@ -30,7 +30,6 @@ except ImportError:
 class Dot(control.Control):
     def __init__(self):
         super(control.Control, self).__init__()
-        print "ALine.__init__"
         self._controls = {}
 
     def render(self):
@@ -40,11 +39,10 @@ class Dot(control.Control):
         return True
 
     def draw_dot(self):
-        glPointSize(2.0)
+        glPointSize(3.0)
         glBegin(GL_POINTS)
-        glColor3f(0.0, 0.0, 1.0)
+        glColor3f(1.0, 0.0, 0.0)
 
-        print "Circle is %d, %d" % (self.bounds.left_top.x, self.bounds.left_top.y)
         glVertex3f(self.bounds.left_top.x, self.bounds.left_top.y, 0.0)
         glEnd()
 

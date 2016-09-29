@@ -14,7 +14,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import sys
+from PySide import QtGui
+from PySide import QtCore
+from PySide import QtOpenGL
 
+
+import sys
 try:
     from OpenGL.GL import *
 except ImportError:
@@ -27,29 +33,34 @@ except ImportError:
 class GLWidget(QtOpenGL.QGLWidget):
     zRotationChanged = QtCore.Signal(int)
 
-    def __init__(self, controls, parent=None):
+    def __init__(self, parent=None):
         super(GLWidget, self).__init__(parent)
-        self._controls = controls
-        self.timer = QtCore.QTimer(self)
-        self.timer.timeout.connect(self.updateGL)
-
-    def start(self, refresh_rate):
-        self.timer.start(refresh_rate)
+        self._controls = []
+        self._text = {}
 
     def render(self):
         for a in self._controls:
             a.render()
 
     def __del__(self):
-        print "GLWidget.__del__"
-        self.makeCurrent()
+        pass
 
     def on_slider(self, angle):
-        print "GLWidget.on_slider"
         pass
 
     def initializeGL(self):
-        glClearColor(0.0, 0.0, 0.0, 1.0)
+        glClearColor(0.0, 0.0, 0.0, 0.0)  # This Will Clear The Background Color To Black
+        glClearDepth(1.0)  # Enables Clearing Of The Depth Buffer
+        glDepthFunc(GL_LESS)  # The Type Of Depth Test To Do
+        glEnable(GL_DEPTH_TEST)  # Enables Depth Testing
+        glShadeModel(GL_SMOOTH)  # Enables Smooth Color Shading
+
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()  # Reset The Projection Matrix
+        # Calculate The Aspect Ratio Of The Window
+
+
+        glMatrixMode(GL_MODELVIEW)
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -57,10 +68,12 @@ class GLWidget(QtOpenGL.QGLWidget):
         glPushMatrix()
         self.render()
         glPopMatrix()
+        self.qglColor(QtCore.Qt.white)
+        for a in self._text:
+            self.renderText(a.x, a.y, 0.0, a.text)
+
 
     def resizeGL(self, width, height):
-        print "GLWidget.resizeGL"
-
         glViewport(0, 0, width, height)
         glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
@@ -79,14 +92,14 @@ class GLWidget(QtOpenGL.QGLWidget):
 
 
 class UserInterface(QtGui.QMainWindow):
-    def __init__(self, controls):
+    def __init__(self):
         super(UserInterface, self).__init__()
         self.refrsh_rate = 40
 
         centralWidget = QtGui.QWidget()
         self.setCentralWidget(centralWidget)
 
-        self.glWidget = GLWidget(controls)
+        self.glWidget = GLWidget()
         self.pixmapLabel = QtGui.QLabel()
 
         self.glWidgetArea = QtGui.QScrollArea()
@@ -112,7 +125,7 @@ class UserInterface(QtGui.QMainWindow):
 
         centralLayout = QtGui.QGridLayout()
         centralLayout.addWidget(self.glWidgetArea, 0, 0, 4, 4)
-        centralLayout.addWidget(self.pixmapLabelArea, 0, 10, 4, 1)
+        # centralLayout.addWidget(self.pixmapLabelArea, 0, 10, 4, 1)
 
         centralLayout.addWidget(zSlider, 4, 0, 1, 4)
         centralWidget.setLayout(centralLayout)
@@ -120,7 +133,7 @@ class UserInterface(QtGui.QMainWindow):
         zSlider.setValue(0 * 16)
 
         self.setWindowTitle("Visual Log Monitor")
-        self.resize(800, 600)
+        self.resize(800, 800)
 
     def createActions(self):
         self.exitAct = QtGui.QAction("E&xit", self, shortcut="Ctrl+Q",
@@ -144,3 +157,13 @@ class UserInterface(QtGui.QMainWindow):
 
     def start(self):
         self.glWidget.start(self.refrsh_rate)
+
+    def on_update(self):
+        self.glWidget.updateGL()
+
+    def get_area(self):
+        return self.glWidget.getContentsMargins()
+
+    def set_controls(self, controls, text):
+        self.glWidget._controls = controls
+        self.glWidget._text = text

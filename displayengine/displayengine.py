@@ -15,20 +15,33 @@ limitations under the License.
 """
 import sys
 from PySide import QtGui
+from PySide import QtCore
 
 import userinterface
 import sourcemgr
+
+LEFT = -7.9
+RIGHT = -6.9
+TOP = -7
+BOTTOM = 8
 
 
 class DisplayEngine(object):
     source_mgr = sourcemgr.SourceManager()
 
     def __init__(self):
-        app = QtGui.QApplication(sys.argv)
-        channel = []
-        self.ui = userinterface.UserInterface(channel)
+        self.app = QtGui.QApplication(sys.argv)
+        self.ui = userinterface.UserInterface()
         self.ui.show()
-        sys.exit(app.exec_())
+
+        self.timer = QtCore.QTimer(self.ui.glWidget)
+        self.timer.timeout.connect(self.update)
+        self.timer.start(40)
+
+    def update(self):
+        c, t = self.source_mgr.getControls()
+        self.ui.set_controls(c, t)
+        self.ui.on_update()
 
     def register(self, source):
         return self.source_mgr.register_source(source)
@@ -36,3 +49,5 @@ class DisplayEngine(object):
     def set_refresh_rate(self, ms):
         self.ui.set_refresh_rate(ms)
 
+    def start(self):
+        sys.exit(self.app.exec_())

@@ -102,11 +102,11 @@
 21-12-1982 01:20:57.301000 ProcessB(12) Message here
 21-12-1982 01:20:58.292000 ProcessB(12) Message here
 21-12-1982 01:20:58.296000 ProcessB(12) Message here
-21-12-1982 01:20:59.263000 ProcessB(12) Message here
-21-12-1982 01:20:59.269000 ProcessB(12) Message here
-21-12-1982 01:21:00.250000 ProcessB(12) Message here
-21-12-1982 01:21:00.256000 ProcessB(12) Message here
-21-12-1982 01:21:01.232000 ProcessB(12) Message here
+21-12-1982 01:20:59.263000 ProcessB(12) Message here Exception
+21-12-1982 01:20:59.269000 ProcessB(12) Message here Fatal
+21-12-1982 01:21:00.250000 ProcessB(12) Message here User Actions
+21-12-1982 01:21:00.256000 ProcessB(12) Message here Started
+21-12-1982 01:21:01.232000 ProcessB(12) Message here Finished
 21-12-1982 01:21:01.240000 ProcessB(12) Message here
 21-12-1982 01:21:02.196000 ProcessB(12) Message here
 21-12-1982 01:21:02.220000 ProcessB(12) Message here
@@ -126,11 +126,11 @@
 21-12-1982 01:21:09.134000 ProcessB(12) Message here
 21-12-1982 01:21:10.186000 ProcessB(12) Message here
 21-12-1982 01:21:10.193000 ProcessB(12) Message here
-21-12-1982 01:21:13.016000 ProcessB(12) Message here
-21-12-1982 01:21:13.042000 ProcessB(12) Message here
-21-12-1982 01:21:13.973000 ProcessC(12) Message here
-21-12-1982 01:21:13.997000 ProcessC(12) Message here
-21-12-1982 01:21:14.966000 ProcessC(12) Message here
+21-12-1982 01:21:13.016000 ProcessB(12) Message here Exception
+21-12-1982 01:21:13.042000 ProcessB(12) Message here Fatal
+21-12-1982 01:21:13.973000 ProcessC(12) Message here User Actions
+21-12-1982 01:21:13.997000 ProcessC(12) Message here Started
+21-12-1982 01:21:14.966000 ProcessC(12) Message here Finished
 21-12-1982 01:21:14.973000 ProcessC(12) Message here
 21-12-1982 01:21:15.948000 ProcessC(12) Message here
 21-12-1982 01:21:15.950000 ProcessC(12) Message here
@@ -145,7 +145,7 @@
 21-12-1982 01:21:20.818000 ProcessC(12) Message here
 21-12-1982 01:21:20.821000 ProcessC(12) Message here
 21-12-1982 01:21:21.789000 ProcessC(12) Message here
-21-12-1982 01:21:21.792000 ProcessC(12) Message here
+21-12-1982 01:21:21.792000 ProcessC(12) Message here Exception
 21-12-1982 01:21:22.766000 ProcessC(12) Message here
 21-12-1982 01:21:22.769000 ProcessC(12) Message here
 21-12-1982 01:21:23.743000 ProcessC(12) Message here
@@ -164,10 +164,10 @@
 21-12-1982 01:21:31.549000 ProcessD(12) Message here
 21-12-1982 01:21:32.529000 ProcessD(12) Message here
 21-12-1982 01:21:32.532000 ProcessD(12) Message here
-21-12-1982 01:21:33.502000 ProcessD(12) Message here
-21-12-1982 01:21:33.509000 ProcessD(12) Message here
-21-12-1982 01:21:34.486000 ProcessD(12) Message here
-21-12-1982 01:21:34.489000 ProcessD(12) Message here
+21-12-1982 01:21:33.502000 ProcessD(12) Message here Fatal
+21-12-1982 01:21:33.509000 ProcessD(12) Message here User Actions
+21-12-1982 01:21:34.486000 ProcessD(12) Message here Started
+21-12-1982 01:21:34.489000 ProcessD(12) Message here Finished
 21-12-1982 01:21:35.469000 ProcessD(12) Message here
 21-12-1982 01:21:35.473000 ProcessD(12) Message here
 21-12-1982 01:21:36.460000 ProcessD(12) Message here
@@ -273,3 +273,4 @@
 21-12-1982 01:25:00.250000 ProcessD(12) Message here
 21-12-1982 01:25:00.252000 ProcessD(12) Message here
 21-12-1982 01:25:01.338000 ProcessD(12) Message here
+21-12-1982 01:25:01.338000 ProcessA(12) Message here Error

@@ -30,7 +30,14 @@ class Source(object):
 
         :return:  Return Start Time of this soruce
         """
-        pass
+        return datetime.datetime.now()
+
+    def end_time(self):
+        """
+
+        :return:  Return Start Time of this soruce
+        """
+        return datetime.datetime.now()
 
     def get_data(self, start, end):
         """ returns data from given interval
@@ -39,4 +46,7 @@ class Source(object):
         :param end: end of interval
         :return:
         """
+        pass
+
+    def getpos(self, an_event):
         pass

@@ -31,8 +31,8 @@ class Circle(control.Control):
         self._num_triangles = 100
 
     def render(self):
-        self.bounds.left_top.x += 0.01
-        self.bounds.right_bottom.x += 0.01
+        self.bounds.left_top.x += 0.1
+        self.bounds.right_bottom.x += 0.1
         center = self.bounds.center()
         radius = self.bounds.width()/2
 
@@ -48,7 +48,7 @@ class Circle(control.Control):
         self._controls[pos] = c
 
     def draw_circle(self, x, y, w):
-        print "draw_circle x=%d y=%d w=%d" % (x, y, w)
+        # print "draw_circle x=%d y=%d w=%d" % (x, y, w)
 
         self._num_triangles -= 10
         if self._num_triangles == 0:
