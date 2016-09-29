@@ -1,12 +1,13 @@
 from displayengine import displayengine
-from input import loggingsourcesample
+from input import samplelogparser
 
 if __name__ == '__main__':
 
     """
         Create a source
     """
-    log_src = loggingsourcesample.LoggingSourceSample("test.txt")
+    keywords = ["Error", "Exception", "Fatal", "Warning", "Started", "Finished", "User Actions"]
+    log_src = samplelogparser.LoggingSourceSample(keywords, "test.txt")
     """ Create Engine
     """
     engine = displayengine.DisplayEngine()

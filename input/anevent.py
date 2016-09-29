@@ -13,15 +13,25 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import datetime
+
 
 class AnEvent(object):
-    def __init__(self, dt=0, shape=0, tooltip="NotSet"):
-        self._shape = shape
-        self._tooltip = tooltip
-        self.date_time = dt
+    def __init__(self):
+        self.keys = []
+        self.date_time = datetime.datetime.now()
+        self.thread = ""
+        self.number = 0
 
     def on_double_click(self):
         pass
+
+    def string(self):
+        msg = " "
+        for a in self.keys:
+            msg += a
+            msg += " "
+        return "line num: (" + str(self.number) + ") datetime(" + str(self.date_time) + "), Keywords:" + msg
 
     def on_click(self):
         pass
