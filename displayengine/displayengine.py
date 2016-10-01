@@ -33,6 +33,7 @@ class DisplayEngine(object):
         self.app = QtGui.QApplication(sys.argv)
         self.ui = userinterface.UserInterface()
         self.ui.show()
+        self.ui.set_move_handler(self.zoom_in, self.zoom_out, self.go_right, self.go_left)
 
         self.timer = QtCore.QTimer(self.ui.glWidget)
         self.timer.timeout.connect(self.update)
@@ -51,3 +52,19 @@ class DisplayEngine(object):
 
     def start(self):
         sys.exit(self.app.exec_())
+
+    def zoom_in(self):
+        print "zoom_in"
+        pass
+
+    def zoom_out(self):
+        print "zoom_out"
+        pass
+
+    def go_right(self):
+        print "go_right"
+        pass
+
+    def go_left(self):
+        print "go_left"
+        pass

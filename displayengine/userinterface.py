@@ -19,8 +19,8 @@ from PySide import QtGui
 from PySide import QtCore
 from PySide import QtOpenGL
 
-
 import sys
+
 try:
     from OpenGL.GL import *
 except ImportError:
@@ -37,6 +37,17 @@ class GLWidget(QtOpenGL.QGLWidget):
         super(GLWidget, self).__init__(parent)
         self._controls = []
         self._text = {}
+        self._zoom_in = None
+        self._zoom_out = None
+        self._move_left = None
+        self._move_right = None
+        self.grabKeyboard()
+
+    def set_move_handler(self, zoom_in, zoom_out, right, left):
+        self._zoom_in = zoom_in
+        self._zoom_out = zoom_out
+        self._move_left = left
+        self._move_right = right
 
     def render(self):
         for a in self._controls:
@@ -72,7 +83,6 @@ class GLWidget(QtOpenGL.QGLWidget):
         for a in self._text:
             self.renderText(a.x, a.y, 0.0, a.text)
 
-
     def resizeGL(self, width, height):
         glViewport(0, 0, width, height)
         glMatrixMode(GL_PROJECTION)
@@ -83,12 +93,19 @@ class GLWidget(QtOpenGL.QGLWidget):
         glTranslated(0.0, 0.0, -40.0)
 
     def mousePressEvent(self, event):
-        print "dx %d" % event.x()
-        print "dy %d" % event.y()
+        b = event.button()
+        if b is QtCore.Qt.LeftButton and self._zoom_in is not None:
+            self._zoom_in()
 
-    def mouseMoveEvent(self, event):
-        print "dx %d" % event.x()
-        print "dy %d" % event.y()
+        if b is QtCore.Qt.RightButton and self._zoom_out is not None:
+            self._zoom_out()
+
+    def keyPressEvent(self, event):
+        if event.key() == QtCore.Qt.Key_Right and self._move_right is not None:
+            self._move_right()
+
+        if event.key() == QtCore.Qt.Key_Left and self._move_left is not None:
+            self._move_left()
 
 
 class UserInterface(QtGui.QMainWindow):
@@ -167,3 +184,6 @@ class UserInterface(QtGui.QMainWindow):
     def set_controls(self, controls, text):
         self.glWidget._controls = controls
         self.glWidget._text = text
+
+    def set_move_handler(self, zoom_in, zoom_out, right, left):
+        self.glWidget.set_move_handler(zoom_in, zoom_out, right, left)

@@ -24,20 +24,23 @@ from PySide import QtGui
 
 
 class Circle(control.Control):
-    def __init__(self):
+    def __init__(self,center=0, radius=0):
         super(control.Control, self).__init__()
         self._controls = {}
         self._dot = dot.Dot()
         self._num_triangles = 100
+        self.center = center
+        self.radius = radius
 
     def render(self):
-        self.bounds.left_top.x += 0.1
-        self.bounds.right_bottom.x += 0.1
-        center = self.bounds.center()
-        radius = self.bounds.width()/2
+        if self.center is 0:
+            self.bounds.left_top.x += 0.1
+            self.bounds.right_bottom.x += 0.1
+            self.center = self.bounds.center()
+            self.radius = self.bounds.width()/2
 
-        self.draw_circle(center.x, center.y, radius)
-        self._dot.set_bounds(control.Bounds(center, center))
+        self.draw_circle(self.center.x, self.center.y, self.radius)
+        self._dot.set_bounds(control.Bounds(self.center, self.center))
         self._dot.render()
 
         for key, value in self._controls.items():

@@ -22,7 +22,7 @@ from PySide import QtCore
 
 LEFT = -7.9
 RIGHT = -6.9
-TOP = -7
+TOP = -8
 BOTTOM = 8
 
 LEN = 15
@@ -79,11 +79,21 @@ class SourceManager(object):
             controls.append(lineA)
             for a in value:
                 x_axis = LEFT + (self.sources[1].getpos(a) * LEN)
-                c = circle.Circle()
-                sbounds = control.Bounds(control.Point(x_axis - 0.5, y_axis - 0.5),
-                                         control.Point(x_axis + 0.5, y_axis + 0.5))
-                c.set_bounds(sbounds)
+                c = circle.Circle(control.Point(x_axis, y_axis), .5)
                 controls.append(c)
+
+                t = textdraw.Text()
+                t.x = x_axis
+                t.y = TOP
+                t.text = str(a.date_time)
+                text.append(t)
+
+                bounds = control.Bounds(control.Point(x_axis, y_axis), control.Point(x_axis, TOP))
+                lineA = line.ALine()
+                lineA.set_color(1,1,1)
+                lineA.set_bounds(bounds)
+                lineA.enableStipple(True)
+                controls.append(lineA)
                 pass
 
         return controls, text

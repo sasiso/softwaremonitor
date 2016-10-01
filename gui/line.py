@@ -35,6 +35,18 @@ class ALine(control.Control):
         """
         super(control.Control, self).__init__()
         self._controls = {}
+        self._r = 0
+        self._g = 1
+        self._b = 0
+        self._isStipple = False
+
+    def enableStipple(self, flag):
+        self._isStipple = flag
+
+    def set_color(self, r=0, g=0, b=0):
+        self._r = r
+        self._g = g
+        self._b = b
 
     def render(self):
         """
@@ -60,11 +72,16 @@ class ALine(control.Control):
 
         :return:
         """
+        if self._isStipple:
+            glLineStipple(2, 0xAAAA)
+            glEnable(GL_LINE_STIPPLE)
+
         glBegin(GL_LINES)
-        glColor3f(0, 1, 0)
+        glColor3f(self._r, self._g, self._b)
         glVertex2f(self.bounds.left_top.x, self.bounds.left_top.y)
         glVertex2f(self.bounds.right_bottom.x, self.bounds.right_bottom.y)
         glEnd()
+        glDisable(GL_LINE_STIPPLE)
 
 
 if __name__ == '__main__':
