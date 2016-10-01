@@ -58,7 +58,7 @@ class LoggingSourceSample(source.Source):
                 line_num += 1
                 result = re.search(meta_regex, line)
                 if result is None:
-                    print "parsing failed for line %s" % line
+                    print "parsing failed for line {0!s}".format(line)
                     continue
 
                 meta = result.group(1)
@@ -103,7 +103,7 @@ class LoggingSourceSample(source.Source):
         return (an_event.date_time - point_b).total_seconds()/span
 
 
-        print str("Total Span is %d" % span)
+        print str("Total Span is {0:d}".format(span))
 
 
 if __name__ == '__main__':

@@ -43,7 +43,7 @@ class Bounds(object):
         return abs(self.left_top.y - self.right_bottom.y)
 
     def print_me(self):
-        print "top x=%d y=%d, bottom x=%d y=%d" % (self.left_top.x, self.left_top.y, self.right_bottom.x, self.right_bottom.y)
+        print "top x={0:d} y={1:d}, bottom x={2:d} y={3:d}".format(self.left_top.x, self.left_top.y, self.right_bottom.x, self.right_bottom.y)
 
 
 class Control(object):

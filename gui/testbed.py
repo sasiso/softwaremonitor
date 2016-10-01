@@ -66,12 +66,12 @@ class LocalWidget(QtOpenGL.QGLWidget):
         glTranslated(0.0, 0.0, -40.0)
 
     def mousePressEvent(self, event):
-        print "dx %d" % event.x()
-        print "dy %d" % event.y()
+        print "dx {0:d}".format(event.x())
+        print "dy {0:d}".format(event.y())
 
     def mouseMoveEvent(self, event):
-        print "dx %d" % event.x()
-        print "dy %d" % event.y()
+        print "dx {0:d}".format(event.x())
+        print "dy {0:d}".format(event.y())
 
 
 class MainWindow(QtGui.QMainWindow):
