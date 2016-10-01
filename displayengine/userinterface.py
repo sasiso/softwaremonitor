@@ -41,13 +41,15 @@ class GLWidget(QtOpenGL.QGLWidget):
         self._zoom_out = None
         self._move_left = None
         self._move_right = None
+        self._reset_scale = None
         self.grabKeyboard()
 
-    def set_move_handler(self, zoom_in, zoom_out, right, left):
+    def set_move_handler(self, zoom_in, zoom_out, right, left, reset):
         self._zoom_in = zoom_in
         self._zoom_out = zoom_out
         self._move_left = left
         self._move_right = right
+        self._reset_scale = reset
 
     def render(self):
         for a in self._controls:
@@ -106,6 +108,9 @@ class GLWidget(QtOpenGL.QGLWidget):
 
         if event.key() == QtCore.Qt.Key_Left and self._move_left is not None:
             self._move_left()
+
+        if event.key() == QtCore.Qt.Key_Escape and self._reset_scale is not None:
+            self._reset_scale()
 
 
 class UserInterface(QtGui.QMainWindow):
@@ -185,5 +190,5 @@ class UserInterface(QtGui.QMainWindow):
         self.glWidget._controls = controls
         self.glWidget._text = text
 
-    def set_move_handler(self, zoom_in, zoom_out, right, left):
-        self.glWidget.set_move_handler(zoom_in, zoom_out, right, left)
+    def set_move_handler(self, zoom_in, zoom_out, right, left, reset):
+        self.glWidget.set_move_handler(zoom_in, zoom_out, right, left, reset)

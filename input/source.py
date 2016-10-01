@@ -39,11 +39,13 @@ class Source(object):
         """
         return datetime.datetime.now()
 
-    def get_data(self, start, end):
+    def get_data(self, zoom=1, recenter=0):
         """ returns data from given interval
 
-        :param start: Begin of interval
-        :param end: end of interval
+        :param zoom:
+        :param left:
+        :param right:
+
         :return:
         """
         pass

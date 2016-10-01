@@ -273,4 +273,6 @@
 21-12-1982 01:25:00.250000 ProcessD(12) Message here
 21-12-1982 01:25:00.252000 ProcessD(12) Message here
 21-12-1982 01:25:01.338000 ProcessD(12) Message here
-21-12-1982 01:25:01.338000 ProcessA(12) Message here Error
+21-12-1982 01:25:01.338000 ProcessE(12) Message here Error
+21-12-1982 01:26:01.338000 ProcesF(12) Message here Error
+21-12-1982 01:27:01.338000 ProcessG(12) Message here Error

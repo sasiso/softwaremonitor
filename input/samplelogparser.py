@@ -19,8 +19,8 @@ class LoggingSourceSample(source.Source):
     """ This class reads a log file and provides input to display engine
 
     """
-    start_datetime = datetime.datetime.now()
-    end_datetime = datetime.datetime.now()
+    zoom_start_time = start_datetime = datetime.datetime.now()
+    zoom_end_time = end_datetime = datetime.datetime.now()
 
     def __init__(self, keyword, filename):
         """
@@ -30,26 +30,47 @@ class LoggingSourceSample(source.Source):
         self._curr_pos = datetime.datetime.now()
         self._filename = filename
         self._keywords = keyword
+        self._result = {}
+        self._parsed = False
 
     def start_time(self):
         """
 
         :return:  Return Start Time of this soruce
         """
-        return self.start_datetime
+        return self.zoom_start_time
 
     def end_time(self):
         """
 
         :return:  Return Start Time of this soruce
         """
-        return self.end_datetime
+        return self.zoom_end_time
 
-    def get_data(self, **kwargs):
-        return self.parse()
+    def get_data(self, zoom=1, recenter=0):
+        if not self._parsed:
+            self.parse()
+            self._parsed = True
+
+        center = self.start_datetime + ((self.end_datetime - self.start_datetime) / 2)
+        center += datetime.timedelta(seconds=recenter)
+        delta = (self.end_datetime - self.start_datetime) / zoom
+
+        self.zoom_start_time = center - delta
+        self.zoom_end_time = center + delta
+
+        return self.prepare()
+
+    def prepare(self):
+        ret = {}
+        for key, value in self._result.iteritems():
+            if self.zoom_start_time <= value[0].date_time <= self.zoom_end_time:
+                ret[key] = value
+
+        return ret
 
     def parse(self):
-        return_value = {}
+
         line_num = 0
         start_time_set = False
 
@@ -87,23 +108,18 @@ class LoggingSourceSample(source.Source):
                 event.date_time = dt
                 process_name = re.search(extract_process_name_from_meta, meta).group(1)
 
-                if process_name not in return_value:
-                    return_value[process_name] = []
+                if process_name not in self._result:
+                    self._result[process_name] = []
 
-                return_value[process_name].append(event)
-
-        return return_value
+                self._result[process_name].append(event)
 
     def getpos(self, an_event):
-        point_a = self.end_datetime
-        point_b = self.start_datetime
+        point_a = self.zoom_end_time
+        point_b = self.zoom_start_time
         delta = point_a - point_b
         span = delta.total_seconds()
 
-        return (an_event.date_time - point_b).total_seconds()/span
-
-
-        print str("Total Span is %d" % span)
+        return (an_event.date_time - point_b).total_seconds() / span
 
 
 if __name__ == '__main__':
