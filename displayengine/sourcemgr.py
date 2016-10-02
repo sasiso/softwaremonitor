@@ -68,7 +68,7 @@ class SourceManager(object):
         text = []
         data = self.sources[1].get_data(self._zoom_factor, self._recenter)
         y_axis = 0
-        for key, value in data.iteritems():
+        for key, value in sorted(data.iteritems()):
             y_axis += 1
             t = textdraw.Text()
             t.x = LEFT
@@ -101,12 +101,12 @@ class SourceManager(object):
         return controls, text
 
     def zoom_in(self):
-        self._zoom_factor /= 2
-        if self._zoom_factor is 0:
-            self._zoom_factor = 1
+        self._zoom_factor += 1
 
     def zoom_out(self):
-        self._zoom_factor *= 2
+        self._zoom_factor -= 1
+        if self._zoom_factor is -1:
+            self._zoom_factor -= 0
 
     def go_right(self):
         self._recenter -= 1
@@ -117,4 +117,3 @@ class SourceManager(object):
     def reset_scale(self):
         self._recenter = 0
         self._zoom_factor = 1
-

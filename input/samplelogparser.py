@@ -66,6 +66,8 @@ class LoggingSourceSample(source.Source):
         for key, value in self._result.iteritems():
             if self.zoom_start_time <= value[0].date_time <= self.zoom_end_time:
                 ret[key] = value
+            else:
+                ret[key] = []
 
         return ret
 
@@ -87,9 +89,10 @@ class LoggingSourceSample(source.Source):
                                                 "%d-%m-%Y %H:%M:%S.%f")
 
                 if not start_time_set:
-                    self.start_datetime = dt
+                    self.start_datetime = self.end_datetime = dt
                     start_time_set = True
-                else:
+
+                if self.end_datetime < dt:
                     self.end_datetime = dt
 
                 found_list = []
