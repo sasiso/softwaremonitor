@@ -34,18 +34,18 @@ Run main.py
 
 Next Work
 ----------------------------------------------------------------------------
-- Add open source License
-Implement sample logging parser
-  To read time and information and render them on display engine
+- Add time scale on x-axis
+- Improve Zoom in/out
+- Fix default display duration
+- Fix left and right movements
+- Add more controls
+- Improve performance with large files
+- Improve rendering logic i.e. only on demand rendering
 
 Implement source manager to handle different sources
   Display engine will query source manager to give channel data for each source
   Display engine will show line for each channel in source
 
-
-UI Work
----------------------------------------------------------------------------
-Add more controls
 
 Challenge
 ---------------------------------------------------------------------------
