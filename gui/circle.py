@@ -51,11 +51,6 @@ class Circle(control.Control):
         self._controls[pos] = c
 
     def draw_circle(self, x, y, w):
-        # print "draw_circle x=%d y=%d w=%d" % (x, y, w)
-
-        self._num_triangles -= 10
-        if self._num_triangles == 0:
-            self._num_triangles = 100
 
         twice_the_pi = 3.14159 * 2
         glBegin(GL_LINES)

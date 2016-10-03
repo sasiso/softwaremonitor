@@ -21,7 +21,7 @@ from gui import textdraw
 from PySide import QtCore
 
 LEFT = -7.9
-RIGHT = -6.9
+RIGHT = 7.9
 TOP = -8
 BOTTOM = 8
 
@@ -88,19 +88,30 @@ class SourceManager(object):
                 c = circle.Circle(control.Point(x_axis, y_axis), .5)
                 controls.append(c)
 
-                t = textdraw.Text()
-                t.x = x_axis
-                t.y = TOP
-                t.text = str(a.date_time)
-                text.append(t)
-
-                bounds = control.Bounds(control.Point(x_axis, y_axis), control.Point(x_axis, TOP))
+                bounds = control.Bounds(control.Point(x_axis, y_axis), control.Point(x_axis, TOP+2))
                 lineA = line.ALine()
-                lineA.set_color(1, 1, 1)
+                lineA.set_color(1, 1, 0)
                 lineA.set_bounds(bounds)
                 lineA.enableStipple(True)
                 controls.append(lineA)
                 pass
+
+        t1 = textdraw.Text()
+        t1.x = LEFT
+        t1.y = TOP+3
+        t1.text = str(self.sources[1].render_start_date())
+        text.append(t1)
+        t2 = textdraw.Text()
+        t2.x = RIGHT-4
+        t2.y = TOP+3
+        t2.text = str(self.sources[1].render_end_date())
+        text.append(t2)
+        bounds = control.Bounds(control.Point(LEFT, TOP+2), control.Point(RIGHT, TOP+2))
+        scale = line.ALine()
+        scale.set_color(1, 1, 0)
+        scale.set_bounds(bounds)
+        scale.enableStipple(True)
+        controls.append(scale)
 
         return controls, text
 

@@ -147,6 +147,12 @@ class LoggingSourceSample(source.Source):
 
         return (an_event.date_time - point_b).total_seconds() / span
 
+    def render_start_date(self):
+        return self.zoom_start_time
+
+    def render_end_date(self):
+        return self.zoom_end_time
+
 
 if __name__ == '__main__':
     keywords = ["Error", "Exception", "Fatal", "Warning", "Started", "Finished", "User Actions"]

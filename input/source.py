@@ -39,6 +39,13 @@ class Source(object):
         """
         return datetime.datetime.now()
 
+    def render_start_date(self):
+        pass
+
+    def render_end_date(self):
+        pass
+
+
     def get_data(self, zoom=1, recenter=0):
         """ returns data from given interval
 
