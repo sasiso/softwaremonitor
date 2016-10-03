@@ -29,7 +29,7 @@ BOTTOM = 8
 class DisplayEngine(object):
     source_mgr = sourcemgr.SourceManager()
 
-    def __init__(self):
+    def __init__(self, refreshrate):
         self.app = QtGui.QApplication(sys.argv)
         self.ui = userinterface.UserInterface()
         self.ui.show()
@@ -41,7 +41,7 @@ class DisplayEngine(object):
 
         self.timer = QtCore.QTimer(self.ui.glWidget)
         self.timer.timeout.connect(self.update)
-        self.timer.start(40)
+        self.timer.start(refreshrate)
 
     def update(self):
         c, t = self.source_mgr.getControls()
@@ -51,8 +51,10 @@ class DisplayEngine(object):
     def register(self, source):
         return self.source_mgr.register_source(source)
 
-    def set_refresh_rate(self, ms):
-        self.ui.set_refresh_rate(ms)
-
     def start(self):
         sys.exit(self.app.exec_())
+
+    def set_file_open_handler(self, handler):
+        self.ui.set_file_open_handler(handler)
+
+

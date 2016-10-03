@@ -94,13 +94,15 @@ class GLWidget(QtOpenGL.QGLWidget):
         glLoadIdentity()
         glTranslated(0.0, 0.0, -40.0)
 
-    def mousePressEvent(self, event):
+    def mouseDoubleClickEvent(self, event):
         b = event.button()
         if b is QtCore.Qt.LeftButton and self._zoom_in is not None:
             self._zoom_in()
 
         if b is QtCore.Qt.RightButton and self._zoom_out is not None:
             self._zoom_out()
+
+        print event.pos()
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Right and self._move_right is not None:
@@ -116,6 +118,7 @@ class GLWidget(QtOpenGL.QGLWidget):
 class UserInterface(QtGui.QMainWindow):
     def __init__(self):
         super(UserInterface, self).__init__()
+        self._file_open = None
         self.refrsh_rate = 40
 
         centralWidget = QtGui.QWidget()
@@ -158,12 +161,22 @@ class UserInterface(QtGui.QMainWindow):
         self.resize(800, 800)
 
     def createActions(self):
+        self.open_file_action = QtGui.QAction("Open Log File", self, shortcut="Ctrl+O",
+                                              triggered=self.openFile)
         self.exitAct = QtGui.QAction("E&xit", self, shortcut="Ctrl+Q",
                                      triggered=self.close)
 
     def createMenus(self):
         self.fileMenu = self.menuBar().addMenu("&File")
         self.fileMenu.addAction(self.exitAct)
+        self.fileMenu.addAction(self.open_file_action)
+
+    def openFile(self):
+        import os
+        path, _ = QtGui.QFileDialog.getOpenFileName(self, "Open File", os.getcwd())
+        print path
+        if self._file_open is not None:
+            self._file_open(path)
 
     def createSlider(self, changedSignal, setterSlot):
         slider = QtGui.QSlider(QtCore.Qt.Horizontal)
@@ -192,3 +205,6 @@ class UserInterface(QtGui.QMainWindow):
 
     def set_move_handler(self, zoom_in, zoom_out, right, left, reset):
         self.glWidget.set_move_handler(zoom_in, zoom_out, right, left, reset)
+
+    def set_file_open_handler(self, file_open_handler):
+        self._file_open = file_open_handler

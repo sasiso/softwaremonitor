@@ -9,13 +9,13 @@ import source
 import datetime
 import anevent
 
-meta_regex = "^(\d\d{1,2}-\d\d{1,2}-\d\d{1,4}\s\d\d{1,2}:\d\d{1,2}:\d\d{1,2}.\d{1,6}\s[\w]+\(\d+\))"
-parse_date_time_from_meta = "^(\d\d{1,2}-\d\d{1,2}-\d\d{1,4}\s\d\d{1,2}:\d\d{1,2}:\d\d{1,2}.\d{1,6})"
-extract_thread_from_meta = "\((\d+)\)$"
-extract_process_name_from_meta = "(\w+)\(\d+\)$"
-
 
 class LoggingSourceSample(source.Source):
+    meta_regex = ""
+    parse_date_time_from_meta = ""
+    extract_thread_from_meta = ""
+    extract_process_name_from_meta = ""
+    date_format = "%d-%m-%Y %H:%M:%S.%f"
     """ This class reads a log file and provides input to display engine
 
     """
@@ -32,6 +32,19 @@ class LoggingSourceSample(source.Source):
         self._keywords = keyword
         self._result = {}
         self._parsed = False
+        self._pos_changed = False
+        self._re_values = {}
+        self._last_zoom = 0
+        self._last_recenter = 0
+
+    def setregex(self, meta, date_time, thread, process):
+        self.meta_regex = meta
+        self.parse_date_time_from_meta = date_time
+        self.extract_thread_from_meta = thread
+        self.extract_process_name_from_meta = process
+
+    def set_date_format(self, date_format):
+        self.date_format = date_format
 
     def start_time(self):
         """
@@ -53,23 +66,31 @@ class LoggingSourceSample(source.Source):
             self._parsed = True
 
         center = self.start_datetime + ((self.end_datetime - self.start_datetime) / 2)
-        center += datetime.timedelta(seconds=recenter)
+        center += datetime.timedelta(minutes=recenter)
         delta = (self.end_datetime - self.start_datetime) / zoom
 
         self.zoom_start_time = center - delta
         self.zoom_end_time = center + delta
 
-        return self.prepare()
+        if self._last_recenter is not recenter or self._last_zoom is not zoom:
+            self._last_recenter = recenter
+            self._last_zoom = zoom
+            return self.prepare()
+
+        return self._re_values
 
     def prepare(self):
-        ret = {}
+        print "Enter Prepare"
+        self._re_values.clear()
+
         for key, value in self._result.iteritems():
             if self.zoom_start_time <= value[0].date_time <= self.zoom_end_time:
-                ret[key] = value
+                self._re_values[key] = value
             else:
-                ret[key] = []
+                self._re_values[key] = []
 
-        return ret
+        print "Done Prepare"
+        return self._re_values
 
     def parse(self):
 
@@ -79,14 +100,14 @@ class LoggingSourceSample(source.Source):
         with open(self._filename) as f:
             for line in f:
                 line_num += 1
-                result = re.search(meta_regex, line)
+                result = re.search(self.meta_regex, line)
                 if result is None:
-                    print "parsing failed for line %s" % line
+                    # print "parsing failed for line %s" % line
                     continue
 
                 meta = result.group(1)
-                dt = datetime.datetime.strptime(re.search(parse_date_time_from_meta, meta).group(1),
-                                                "%d-%m-%Y %H:%M:%S.%f")
+                dt = datetime.datetime.strptime(re.search(self.parse_date_time_from_meta, meta).group(1),
+                                               self.date_format)
 
                 if not start_time_set:
                     self.start_datetime = self.end_datetime = dt
@@ -107,9 +128,11 @@ class LoggingSourceSample(source.Source):
                 event = anevent.AnEvent()
                 event.number = line_num
                 event.keys = found_list
-                event.thread = re.search(extract_thread_from_meta, meta).group(1)
+                if self.extract_thread_from_meta:
+                    event.thread = re.search(self.extract_thread_from_meta, meta).group(1)
+
                 event.date_time = dt
-                process_name = re.search(extract_process_name_from_meta, meta).group(1)
+                process_name = re.search(self.extract_process_name_from_meta, meta).group(1)
 
                 if process_name not in self._result:
                     self._result[process_name] = []

@@ -64,8 +64,12 @@ class SourceManager(object):
 
         :return:
         """
+
         controls = []
         text = []
+
+        if not self.sources:
+            return controls, text
         data = self.sources[1].get_data(self._zoom_factor, self._recenter)
         y_axis = 0
         for key, value in sorted(data.iteritems()):
@@ -102,18 +106,24 @@ class SourceManager(object):
 
     def zoom_in(self):
         self._zoom_factor += 1
+        print "zoom_in %d" % self._zoom_factor
 
     def zoom_out(self):
         self._zoom_factor -= 1
-        if self._zoom_factor is -1:
-            self._zoom_factor -= 0
+        if self._zoom_factor is 0:
+            self._zoom_factor = 1
+
+        print "zoom_out %d" % self._zoom_factor
 
     def go_right(self):
         self._recenter -= 1
+        print "go_right %d" % self._recenter
 
     def go_left(self):
         self._recenter += 1
+        print "v %d" % self._recenter
 
     def reset_scale(self):
+        print "reset_scale"
         self._recenter = 0
         self._zoom_factor = 1
